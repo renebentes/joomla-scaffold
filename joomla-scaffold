@@ -1,0 +1,246 @@
+#!/bin/bash
+
+clear
+stty erase '^?'
+
+CreateMedia()
+{
+	mkdir -p media
+	echo $index > media/index.html
+	mkdir media/css
+	echo $index > media/css/index.html
+	mkdir -p media/images
+	echo $index > media/images/index.html
+	mkdir -p media/js
+	echo $index > media/js/index.html
+}
+
+CreateModule()
+{
+	echo -n "Qual o nome do Módulo? Ex.: login, menu (Singular e minúsculo) "
+	read name
+	echo "Criando Módulo mod_$name"
+	echo $index > index.html
+	echo "jsitemodulemanifest" > mod_$name.xml
+	echo "jheader" > mod_$name.php
+	echo "jsitemodule" >> mod_$name.php
+	echo "jheader" > helper.php
+	echo "jsitemodulehelper" >> helper.php
+	mkdir -p tmpl
+	echo $index > tmpl/index.html
+	echo "jheader" > tmpl/default.php
+	mkdir -p language
+	echo $index > language/index.html
+	mkdir -p language/pt-BR
+	echo $index > language/pt-BR/index.html
+	echo "jheaderini" > language/pt-BR/pt-BR.mod_$name.ini
+	echo "jlanguagebasic" >> language/pt-BR/pt-BR.mod_$name.ini
+	echo "jheaderini" > language/pt-BR/pt-BR.mod_$name.sys.ini
+	echo "jlanguagebasic" >> language/pt-BR/pt-BR.mod_$name.sys.ini
+	echo "Módulo criado."
+}
+
+CreateComponent()
+{
+
+	echo -n "Qual o nome do Componente? Ex.: banner, slideshow (Singular e minúsculo) "
+	read name
+	echo "Criando Estrutura Componente padrão para: com_$name"
+	echo $index > index.html
+	echo "jcomponentmanifest" > $name.xml
+	echo "jheader" > script.php
+	echo "jinstallerscript" >> script.php
+	echo "Criando Admin"
+	mkdir -p admin
+	echo $index > admin/index.html
+	echo "jadminaccess" > admin/access.xml
+	echo "jadminconfig" > admin/config.xml
+	echo "jheader" > admin/controller.php
+	echo "admincontroller" >> admin/controller.php
+	echo "jheader" > admin/$name.php
+	echo "jadmincomponent" >> admin/$name.php
+	mkdir -p admin/controllers
+	echo $index > admin/controllers/index.html
+	echo "jheader" > admin/controllers/$name.php
+	echo "jadmincontrolleredit" >> admin/controllers/$name.php
+	echo "jheader" > admin/controllers/$name"s".php
+	echo "jadmincontrollerlist" >> admin/controllers/$name"s".php
+	mkdir -p admin/help
+	echo $index > admin/help/index.html
+	mkdir -p admin/help/pt-BR
+	echo echo $index > admin/help/pt-BR/index.html
+	mkdir -p admin/helpers
+	echo $index > admin/helpers/index.html
+	mkdir -p admin/helpers/html
+	echo $index > admin/helpers/html/index.html
+	echo "jheader" > admin/helpers/$name.php
+	echo "jadminhelper" >> admin/helpers/$name.php
+	mkdir -p admin/language
+	echo $index > admin/language/index.html
+	mkdir -p admin/language/pt-BR
+	echo $index > admin/language/pt-BR/index.html
+	echo "jheaderini" > admin/language/pt-BR/pt-BR.com_$name.ini
+	echo "jlanguagebasic" >> admin/language/pt-BR/pt-BR.com_$name.ini
+	echo "jheaderini" > admin/language/pt-BR/pt-BR.com_$name.sys.ini
+	echo "jlanguagebasic" >> admin/language/pt-BR/pt-BR.com_$name.sys.ini
+	mkdir -p admin/models
+	echo $index > admin/models/index.html
+	mkdir -p admin/models/fields
+	echo $index > admin/models/fields/index.html
+	echo "jheader" > admin/models/fields/$name.php
+	echo "jfieldlist" >> admin/models/fields/$name.php
+	mkdir -p admin/models/forms
+	echo $index > admin/models/forms/index.html
+	echo "jadminform" >> admin/models/forms/$name.xml
+	mkdir -p admin/sql
+	echo $index > admin/sql/index.html
+	echo "CREATE TABLE IF NOT EXISTS #__$name" > admin/sql/install.mysql.utf8.sql
+	echo "DROP TABLE IF EXISTS #__$name" > admin/sql/uninstall.mysql.utf8.sql
+	mkdir -p admin/sql/updates
+	echo $index > admin/sql/updates/index.html
+	mkdir -p admin/sql/updates/mysql
+	echo $index > admin/sql/updates/mysql/index.html
+	mkdir -p admin/tables
+	echo $index > admin/tables/index.html
+	echo "jheader" > admin/tables/$name.php
+	echo "jadmintable" >> admin/tables/$name.php
+	mkdir -p admin/views
+	echo $index > admin/views/index.html
+	mkdir -p admin/views/$name
+	echo $index > admin/views/$name/index.html
+	echo "jheader" > admin/views/$name/view.html.php
+	echo "jadminviewedit" >> admin/views/$name/view.html.php
+	mkdir -p admin/views/$name/tmpl
+	echo $index > admin/views/$name/tmpl/index.html
+	echo "jheader" > admin/views/$name/tmpl/edit.php
+	echo "jadminlayoutedit" >> admin/views/$name/tmpl/edit.php
+	echo "jheader" > admin/views/$name/tmpl/edit_metadata.php
+	echo "jadminlayoutmetadata" >> admin/views/$name/tmpl/edit_metadata.php
+	echo "jheader" > admin/views/$name/tmpl/edit_params.php
+	echo "jadminlayoutparams" >> admin/views/$name/tmpl/edit_params.php
+	mkdir -p admin/views/$name"s"
+	echo $index > admin/views/$name"s"/index.html
+	echo "jheader" > admin/views/$name"s"/view.html.php
+	echo "jadminviewlist" >> admin/views/$name"s"/view.html.php
+	mkdir -p admin/views/$name"s"/tmpl
+	echo $index > admin/views/$name"s"/tmpl/index.html
+	echo "jheader" > admin/views/$name"s"/tmpl/default.php
+	echo "jadminlayoutlist" >> admin/views/$name"s"/tmpl/default.php
+	echo "Criando Site"
+	mkdir -p site
+	echo $index > site/index.html
+	echo "jheader" > site/controller.php
+	echo "jsitecontroller" >> site/controller.php
+	echo "jheader" > site/$name.php
+	echo "jsitecomponent" >> site/$name.php
+	echo '<?xml version="1.0" encoding="utf-8"?><metadata></metadata>' > site/metadata.xml
+	echo "jheader" > site/router.php
+	echo "jsiterouter" >> site/router.php
+	mkdir -p site/controller
+	echo $index > site/controller/index.html
+	echo "jheader" > site/controller/$name.php
+	echo "jsitecontrolleritem" >> site/controller/$name.php
+	echo "jheader" > site/controller/$name"s".php
+	echo "jsitecontrollerlist" >> site/controller/$name"s".php
+	mkdir -p site/helpers
+	echo $index > site/helpers/index.html
+	mkdir -p site/helpers/html
+	echo $index > site/helpers/html/index.html
+	echo "jheader" > site/helpers/category.php
+	echo "jsitehelpercategory" >> site/helpers/category.php
+	echo "jheader" > site/helpers/route.php
+	echo "jsitehelperroute" >> site/helpers/route.php
+	mkdir -p site/language
+	echo $index > site/language/index.html
+	mkdir -p site/language/pt-BR
+	echo $index > site/language/pt-BR/index.html
+	echo "jheaderini" > site/language/pt-BR/pt-BR.com_$name.ini
+	echo "jlanguagebasic" >> site/language/pt-BR/pt-BR.com_$name.ini
+	mkdir -p site/models
+	echo $index > site/models/index.html
+	mkdir -p site/models/forms
+	echo $index > site/models/forms/index.html
+	echo "jsiteform" > site/models/forms/$name.xml
+	mkdir -p site/models/rules
+	echo $index > site/models/rules/index.html
+	echo "jheader" > site/models/categories.php
+	echo "jsitemodelcategories" >> site/models/categories.php
+	echo "jheader" > site/models/category.php
+	echo "jsitemodelcategory" >> site/models/category.php
+	echo "jheader" > site/models/featured.php
+	echo "jsitemodelfeatured" >> site/models/featured.php
+	echo "jheader" > site/models/$name.php
+	echo "jsitemodelitem" >> site/models/$name.php
+	mkdir -p site/views
+	echo $index > site/views/index.html
+	mkdir -p site/views/categories
+	echo $index > site/views/categories/index.html
+	mkdir -p site/views/categories/tmpl
+	echo $index > site/views/categories/tmpl/index.html
+	echo "jsiteviewmenu" > site/views/categories/tmpl/default.xml
+	echo "jheader" > site/views/categories/tmpl/default.php
+	echo "jheader" > site/views/categories/view.html.php
+	echo "jsiteviewcategories" >> site/views/categories/view.html.php
+	mkdir -p site/views/category
+	echo $index > site/views/category/index.html
+	mkdir -p site/views/category/tmpl
+	echo $index > site/views/category/tmpl/index.html
+	echo "jsiteviewmenu" > site/views/category/tmpl/default.xml
+	echo "jheader" > site/views/category/tmpl/default.php
+	echo "jheader" > site/views/category/view.html.php
+	echo "jsiteviewcategory" >> site/views/category/view.html.php
+	mkdir -p site/views/featured
+	echo $index > site/views/featured/index.html
+	mkdir -p site/views/featured/tmpl
+	echo $index > site/views/featured/tmpl/index.html
+	echo "jsiteviewmenu" > site/views/featured/tmpl/default.xml
+	echo "jheader" > site/views/featured/tmpl/default.php
+	echo "jheader" > site/views/featured/view.html.php
+	echo "jsiteviewfeatured" >> site/views/featured/view.html.php
+	mkdir -p site/views/$name
+	echo $index > site/views/$name/index.html
+	mkdir -p site/views/$name/tmpl
+	echo $index > site/views/$name/tmpl/index.html
+	echo "jsiteviewmenu" > site/views/$name/tmpl/default.xml
+	echo "jheader" > site/views/$name/tmpl/default.php
+	echo "jheader" > site/views/$name/view.html.php
+	echo "jsiteviewitem" >> site/views/$name/view.html.php
+	echo "Criando Media"
+	CreateMedia
+	echo "Estutura do Componente Criada!"
+}
+
+CreatePlugin()
+{
+	echo "Função não implementada!"
+}
+
+CreateTemplate()
+{
+	echo "Função não implementada!"
+}
+
+echo
+echo "Script de automação de Scaffolds de Extensões Joomla! 2.5 by Rene Bentes Pinto"
+echo
+echo -n "Antes de iniciar, você está na pasta raiz do seu projeto? (s/n) "
+read resp
+
+if [ "$resp" = "n" ]; then
+	exit
+fi
+
+index='<!DOCTYPE HTML><html lang="pt-br" dir="ltr"><head><meta charset="utf-8"><title></title></head><body><h1></h1></body></html>'
+
+echo
+echo "Que extensão você deseja criar? 1 - Módulo, 2 - Componente, 3 - Plugin, 4 - Template"
+echo -n "Informe o número correspondente: "
+read ext
+
+case "$ext" in
+	"1") CreateModule ;;
+	"2") CreateComponent ;;
+	"3") CreatePlugin ;;
+	"4") CreateTemplate ;;
+	*) echo "Opção inválida. Saindo..."
+esac
