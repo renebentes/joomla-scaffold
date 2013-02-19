@@ -92,6 +92,10 @@ CreateComponent()
 	mkdir -p admin/models/forms
 	echo $index > admin/models/forms/index.html
 	echo "jadminform" >> admin/models/forms/$name.xml
+	echo "jheader" > admin/models/$name.php
+	echo "jmodelitem" >> admin/models/$name.php
+	echo "jheader" > admin/models/$name"s".php
+	echo "jmodellist" >> admin/models/$name"s".php
 	mkdir -p admin/sql
 	echo $index > admin/sql/index.html
 	echo "jsqlcreate" > admin/sql/install.mysql.utf8.sql
