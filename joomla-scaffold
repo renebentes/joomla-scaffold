@@ -110,6 +110,14 @@ CreateComponent()
 	echo "jadmintable" >> admin/tables/$name.php
 	mkdir -p admin/views
 	echo $index > admin/views/index.html
+	mkdir -p admin/views/cpanel
+	echo $index > admin/views/cpanel/index.html
+	echo "jheader" > admin/views/cpanel/view.html.php
+	echo "jadminview" >> admin/views/cpanel/view.html.php
+	mkdir -p admin/views/cpanel/tmpl
+	echo $index > admin/views/cpanel/tmpl/index.html
+	echo "jheader" > admin/views/cpanel/tmpl/default.php
+	echo "jadminlayoutcpanel" >> admin/views/cpanel/tmpl/default.php
 	mkdir -p admin/views/$name
 	echo $index > admin/views/$name/index.html
 	echo "jheader" > admin/views/$name/view.html.php
@@ -140,12 +148,12 @@ CreateComponent()
 	echo '<?xml version="1.0" encoding="utf-8"?><metadata></metadata>' > site/metadata.xml
 	echo "jheader" > site/router.php
 	echo "jsiterouter" >> site/router.php
-	mkdir -p site/controller
-	echo $index > site/controller/index.html
-	echo "jheader" > site/controller/$name.php
-	echo "jsitecontrolleritem" >> site/controller/$name.php
-	echo "jheader" > site/controller/$name"s".php
-	echo "jsitecontrollerlist" >> site/controller/$name"s".php
+	mkdir -p site/controllers
+	echo $index > site/controllers/index.html
+	echo "jheader" > site/controllers/$name.php
+	echo "jsitecontrolleritem" >> site/controllers/$name.php
+	echo "jheader" > site/controllers/$name"s".php
+	echo "jsitecontrollerlist" >> site/controllers/$name"s".php
 	mkdir -p site/helpers
 	echo $index > site/helpers/index.html
 	mkdir -p site/helpers/html
