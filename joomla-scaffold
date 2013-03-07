@@ -9,8 +9,15 @@ CreateMedia()
 	echo $index > media/index.html
 	mkdir media/css
 	echo $index > media/css/index.html
+	echo 'jadmincss' > media/css/backend.css
 	mkdir -p media/images
 	echo $index > media/images/index.html
+	mkdir -p media/images/icon
+	echo $index > media/images/icon/index.html
+	mkdir -p media/images/menu
+	echo $index > media/images/menu/index.html
+	mkdir -p media/images/toolbar
+	echo $index > media/images/toolbar/index.html
 	mkdir -p media/js
 	echo $index > media/js/index.html
 }
@@ -68,7 +75,7 @@ CreateComponent()
 	mkdir -p admin/help
 	echo $index > admin/help/index.html
 	mkdir -p admin/help/pt-BR
-	echo echo $index > admin/help/pt-BR/index.html
+	echo $index > admin/help/pt-BR/index.html
 	mkdir -p admin/helpers
 	echo $index > admin/helpers/index.html
 	mkdir -p admin/helpers/html
@@ -81,21 +88,27 @@ CreateComponent()
 	echo $index > admin/language/pt-BR/index.html
 	echo "jheaderini" > admin/language/pt-BR/pt-BR.com_$name.ini
 	echo "jlanguagebasic" >> admin/language/pt-BR/pt-BR.com_$name.ini
+	echo "jadminlanguagesubmenu" >> admin/language/pt-BR/pt-BR.com_$name.ini
+	echo "jadminlanguagequickicon" >> admin/language/pt-BR/pt-BR.com_$name.ini
+	echo "jadminlanguagetitle" >> admin/language/pt-BR/pt-BR.com_$name.ini
+	echo "jadminlanguagelist" >> admin/language/pt-BR/pt-BR.com_$name.ini
+	echo "jlanguagegeading" >> admin/language/pt-BR/pt-BR.com_$name.ini
 	echo "jheaderini" > admin/language/pt-BR/pt-BR.com_$name.sys.ini
 	echo "jlanguagebasic" >> admin/language/pt-BR/pt-BR.com_$name.sys.ini
+	echo "jadminlanguagesubmenu" >> admin/language/pt-BR/pt-BR.com_$name.sys.ini
 	mkdir -p admin/models
 	echo $index > admin/models/index.html
 	mkdir -p admin/models/fields
 	echo $index > admin/models/fields/index.html
-	echo "jheader" > admin/models/fields/$name.php
-	echo "jfieldlist" >> admin/models/fields/$name.php
+	echo "jheader" > admin/models/fields/ordering.php
+	echo "jfieldordering" >> admin/models/fields/ordering.php
 	mkdir -p admin/models/forms
 	echo $index > admin/models/forms/index.html
-	echo "jadminform" >> admin/models/forms/$name.xml
+	echo "jadminform" > admin/models/forms/$name.xml
 	echo "jheader" > admin/models/$name.php
-	echo "jmodelitem" >> admin/models/$name.php
+	echo "jadminmodeledit" >> admin/models/$name.php
 	echo "jheader" > admin/models/$name"s".php
-	echo "jmodellist" >> admin/models/$name"s".php
+	echo "jadminmodellist" >> admin/models/$name"s".php
 	mkdir -p admin/sql
 	echo $index > admin/sql/index.html
 	echo "jsqlcreate" > admin/sql/install.mysql.utf8.sql
@@ -118,6 +131,8 @@ CreateComponent()
 	echo $index > admin/views/cpanel/tmpl/index.html
 	echo "jheader" > admin/views/cpanel/tmpl/default.php
 	echo "jadminlayoutcpanel" >> admin/views/cpanel/tmpl/default.php
+	echo "jheader" > admin/views/cpanel/tmpl/default_stats.php
+	echo "jadminlayoutstats" >> admin/views/cpanel/tmpl/default_stats.php
 	mkdir -p admin/views/$name
 	echo $index > admin/views/$name/index.html
 	echo "jheader" > admin/views/$name/view.html.php
@@ -130,6 +145,8 @@ CreateComponent()
 	echo "jadminlayoutmetadata" >> admin/views/$name/tmpl/edit_metadata.php
 	echo "jheader" > admin/views/$name/tmpl/edit_params.php
 	echo "jadminlayoutparams" >> admin/views/$name/tmpl/edit_params.php
+	echo "jheader" > admin/views/$name/tmpl/edit_publish.php
+	echo "jadminlayoutpublish" >> admin/views/$name/tmpl/edit_publish.php
 	mkdir -p admin/views/$name"s"
 	echo $index > admin/views/$name"s"/index.html
 	echo "jheader" > admin/views/$name"s"/view.html.php
@@ -238,7 +255,7 @@ echo
 echo -n "Antes de iniciar, você está na pasta raiz do seu projeto? (s/n) "
 read resp
 
-if [ "$resp" = "n" ]; then
+if [ "$resp" != "s" ]; then
 	exit
 fi
 
