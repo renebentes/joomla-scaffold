@@ -196,8 +196,6 @@ CreateComponent()
 	echo "jsitemodelcategories" >> site/models/categories.php
 	echo "jheader" > site/models/category.php
 	echo "jsitemodelcategory" >> site/models/category.php
-	echo "jheader" > site/models/featured.php
-	echo "jsitemodelfeatured" >> site/models/featured.php
 	echo "jheader" > site/models/$name.php
 	echo "jsitemodelitem" >> site/models/$name.php
 	mkdir -p site/views
@@ -218,14 +216,6 @@ CreateComponent()
 	echo "jheader" > site/views/category/tmpl/default.php
 	echo "jheader" > site/views/category/view.html.php
 	echo "jsiteviewcategory" >> site/views/category/view.html.php
-	mkdir -p site/views/featured
-	echo $index > site/views/featured/index.html
-	mkdir -p site/views/featured/tmpl
-	echo $index > site/views/featured/tmpl/index.html
-	echo "jsiteviewmenu" > site/views/featured/tmpl/default.xml
-	echo "jheader" > site/views/featured/tmpl/default.php
-	echo "jheader" > site/views/featured/view.html.php
-	echo "jsiteviewfeatured" >> site/views/featured/view.html.php
 	mkdir -p site/views/$name
 	echo $index > site/views/$name/index.html
 	mkdir -p site/views/$name/tmpl
